@@ -1,20 +1,22 @@
-from timeDate import DateTime
+from dateTime import DateTime
+from layout import layout, elementKeys
+
 import PySimpleGUI as gui
 
-dateTime = DateTime()
+dateTimeObject = DateTime()
 
-# layout = [[gui.Text(dateTime.currentTime)], [gui.Button("OK")]]
-# windowElement = gui.Window(title="Hello World", layout=layout, margins=(100, 50)).read()
+windowElement = gui.Window(title="Hello World", layout=layout, margins=(100, 50))
 
 while True:
-    print(dateTime.currentTime)
-#     event, values = windowElement.read()
-#     # End program if user closes window or
-#     # presses the OK button
-#     if event == "OK" or event == gui.WIN_CLOSED:
-#         break
+  event, values = windowElement.read(timeout=1000)
+  # End program if user closes window or
+  # presses the OK button
+  windowElement[elementKeys["currentTime"]].update(dateTimeObject.currentTime) 
 
-# windowElement.close()
+  if event == "OK" or event == gui.WIN_CLOSED:
+    break
+
+windowElement.close()
 
 print("test")
 # print(DateTime())
