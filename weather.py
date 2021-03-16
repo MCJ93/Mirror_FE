@@ -30,13 +30,9 @@ class CombinedWeather:
     return Weather(weatherObject)
 
   @property
-  def weather(self):
-    # response = requests.get(self.completeUrl) 
-    # print(response)
-    # jsonWeather = response.json()
-    print(Weather(mockup["current"]))
-    print(map(lambda hourlyWeather : Weather(hourlyWeather), mockup["hourly"]))
-    return {
-      "currentWeather": Weather(mockup["current"]),
-      "futureWeather": map(lambda hourlyWeather : Weather(hourlyWeather), mockup["hourly"]) 
-    }
+  def current(self):
+    return Weather(mockup["current"])
+
+  @property
+  def future(self):
+    return map(lambda hourlyWeather : Weather(hourlyWeather), mockup["hourly"])
