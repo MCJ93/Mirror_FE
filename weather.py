@@ -34,5 +34,7 @@ class CombinedWeather:
     return Weather(mockup["current"])
 
   @property
-  def future(self):
-    return map(lambda hourlyWeather : Weather(hourlyWeather), mockup["hourly"])
+  def futureHourly(self):
+    mappedFutureHourly = list(map(lambda hourlyWeather : self.mapWeather(hourlyWeather), mockup["hourly"]))
+    print(mappedFutureHourly[0].temp)
+    # return map(lambda hourlyWeather : self.mapWeather(hourlyWeather), mockup["hourly"])

@@ -15,6 +15,8 @@ weatherObject = CombinedWeather()
 
 gui.theme("Black")
 
+
+
 windowElement = gui.Window(
   title="Hello World",
   layout=layout,
@@ -26,8 +28,6 @@ windowElement = gui.Window(
 ).Finalize()
 
 windowElement.Maximize()
-print(translatorObject.getTranslation(dateTimeObject.dayOfWeek))
-print(degree_sign)
 while True:
   event, values = windowElement.read(timeout=1000)
 
@@ -35,7 +35,7 @@ while True:
   currentDate = dateTimeObject.currentDate
   dayOfWeek = translatorObject.getTranslation(dateTimeObject.dayOfWeek)
   currentTemperature = f"{weatherObject.current.temp}{degree_sign}C"
-  print(currentTemperature)
+  futureWeather = weatherObject.futureHourly
 
   windowElement[elementKeys["currentTime"]].update(currentTime)
   windowElement[elementKeys["currentDate"]].update(currentDate)
@@ -49,4 +49,3 @@ while True:
 windowElement.close()
 
 print("test")
-# print(DateTime())
