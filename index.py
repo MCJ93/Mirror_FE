@@ -27,7 +27,7 @@ windowElement = gui.Window(
   margins=(30, 30),
   no_titlebar=True,
   location=(0,0),
-  size=(1366,768),
+  size=(1500,768),
   keep_on_top=True,
 ).Finalize()
 
