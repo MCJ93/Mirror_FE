@@ -28,6 +28,12 @@ elementKeys = {
   "futureDailyIcon4": "_futureDailyIcon4",
   "futureDailyIcon5": "_futureDailyIcon5",
   "futureDailyIcon6": "_futureDailyIcon6",
+  "futureDailyValues1": "_futureDailyValues1_",
+  "futureDailyValues2": "_futureDailyValues2_",
+  "futureDailyValues3": "_futureDailyValues3_",
+  "futureDailyValues4": "_futureDailyValues4_",
+  "futureDailyValues5": "_futureDailyValues5_",
+  "futureDailyValues6": "_futureDailyValues6_",
 }
 
 fontBig = ("Bebas Neue", 60)
@@ -62,6 +68,15 @@ class FutureHourlyWeatherText(BaseElement):
       justification='center'
     )
 
+class FutureDailyValue(BaseElement):
+  def __init__(self, key):
+    super().__init__(
+      key,
+      font=fontSmall,
+      size=(7, 3),
+      justification='left'
+    )
+
 class BigText(BaseElement):
   def __init__(self, key):
     super().__init__(
@@ -87,7 +102,7 @@ leftColumn = [
   [
     gui.Text(
       "",
-      size=(0, 30),
+      size=(0, 28),
       background_color="#000"
     ),
   ],
@@ -105,17 +120,9 @@ rightColumn = [
   [
     gui.Text(
       "",
-      size=(0, 30),
+      size=(0, 28),
       background_color="#000"
     ),
-  ],
-    [
-    Icon(elementKeys["futureDailyIcon1"]),
-    Icon(elementKeys["futureDailyIcon2"]),
-    Icon(elementKeys["futureDailyIcon3"]),
-    Icon(elementKeys["futureDailyIcon4"]),
-    Icon(elementKeys["futureDailyIcon5"]),
-    Icon(elementKeys["futureDailyIcon6"]),
   ],
   [
     BigText(elementKeys["currentTemperature"])
@@ -140,14 +147,22 @@ rightColumn = [
     FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp7"]),
     FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp8"])
   ],
-  # [
-  #   Icon(elementKeys["futureDailyIcon1"]),
-  #   Icon(elementKeys["futureDailyIcon2"]),
-  #   Icon(elementKeys["futureDailyIcon3"]),
-  #   Icon(elementKeys["futureDailyIcon4"]),
-  #   Icon(elementKeys["futureDailyIcon5"]),
-  #   Icon(elementKeys["futureDailyIcon6"]),
-  # ],
+  [
+    Icon(elementKeys["futureDailyIcon1"]),
+    Icon(elementKeys["futureDailyIcon2"]),
+    Icon(elementKeys["futureDailyIcon3"]),
+    Icon(elementKeys["futureDailyIcon4"]),
+    Icon(elementKeys["futureDailyIcon5"]),
+    Icon(elementKeys["futureDailyIcon6"]),
+  ],
+  [
+    FutureDailyValue(elementKeys["futureDailyValues1"]),
+    FutureDailyValue(elementKeys["futureDailyValues2"]),
+    FutureDailyValue(elementKeys["futureDailyValues3"]),
+    FutureDailyValue(elementKeys["futureDailyValues4"]),
+    FutureDailyValue(elementKeys["futureDailyValues5"]),
+    FutureDailyValue(elementKeys["futureDailyValues6"])
+  ],
 ]
 
 layout = [

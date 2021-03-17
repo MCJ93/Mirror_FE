@@ -19,17 +19,12 @@ class Icons:
     # return base64.encodestring(image_byt)
 
 def cropImage(imagePath):
-  # Image.open(imagePath)
-  # image_byt = imagePath.read()
-  # base = base64.encodestring(image_byt)
-  img = Image.open(imagePath)
+  img = Image.open(open(imagePath, "rb"))
+  x, y = img.size
 
-  w, h = img.size
-
-  left = w/4
-  right = 3*w/4
-  upper = h/4
-  lower = 3*h/4
-
-  img.crop([ left, upper, right, lower])
-  return base64.b64encode(img)
+  imgAfterCrop = img.crop(( 15, 15, x - 5, y - 15 ))
+  imgAfterResize = imgAfterCrop.resize([50, 40])
+  img_byte_arr = io.BytesIO()
+  imgAfterResize.save(img_byte_arr, format=img.format)
+  img_byte_arr = img_byte_arr.getvalue()
+  return img_byte_arr

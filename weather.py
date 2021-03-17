@@ -19,6 +19,7 @@ class FutureDailyWeather:
   def __init__(self, weatherObject):
     self.date = weatherObject["dt"]
     self.icon = weatherObject["weather"][0]["icon"]
+    self.weekDay= datetime.fromtimestamp(weatherObject["dt"]).weekday()
     self.temp_max_raw = round(weatherObject['temp']['max'])
     self.temp_min_raw = round(weatherObject['temp']['min'])
     self.temp_max_degrees = f"{round(weatherObject['temp']['max'])}{degree_sign}"
