@@ -57,7 +57,7 @@ class FutureHourlyWeatherText(BaseElement):
       key,
       font=fontSmall,
       size=(4, 2),
-      justification='left'
+      justification='center'
     )
 
 class FutureDailyValue(BaseElement):

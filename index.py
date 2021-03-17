@@ -15,9 +15,7 @@ translatorObject = Translator(lngKey)
 dateTimeObject = DateTime()
 weatherObject = CombinedWeather()
 icons = Icons(weatherObject.futureDaily)
-
 icons.fetchIcons()
-print(icons.icons)
 
 gui.theme("Black")
 
@@ -54,8 +52,8 @@ while True:
     windowElement[elementKeys[f"futureHourlyWeatherTime{index}"]].update(f"{futureWeatherHourly[index - 1]['hour']} \n {futureWeatherHourly[index - 1]['temperature']}")
 
   for dailyIndex in range(0, 5):
-    croppedImage = cropImageMockup("/home/macjej/Workspace/mirror/assets/10d@2x.png")
-    # croppedImage = cropImage(icons.icons[dailyIndex])
+    # croppedImage = cropImageMockup("/home/macjej/Workspace/mirror/assets/10d@2x.png")
+    croppedImage = cropImage(icons.icons[dailyIndex])
     windowElement[elementKeys[f"futureDailyIcon{dailyIndex + 1}"]].update(data=Tk.PhotoImage(
       data=croppedImage
     ))
@@ -70,5 +68,3 @@ while True:
     break
 
 windowElement.close()
-
-print("test")

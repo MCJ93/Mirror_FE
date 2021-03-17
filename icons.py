@@ -14,10 +14,9 @@ class Icons:
       self.icons.append(self.getIcon(self.dailyWeather[index].icon))
 
   def getIcon(self, iconName):
-    # baseUrl = f"http://openweathermap.org/img/wn/{iconName}@2x.png"
-    # response = requests.get(baseUrl)
-    # return response
-    return
+    baseUrl = f"http://openweathermap.org/img/wn/{iconName}@2x.png"
+    response = requests.get(baseUrl)
+    return response
 
 def cropImage(imageResponse):
   img = Image.open(BytesIO(imageResponse.content))
