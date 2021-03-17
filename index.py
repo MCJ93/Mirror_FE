@@ -2,7 +2,7 @@ from dateTime import DateTime, daysOfWeekNo
 from layout import layout, elementKeys
 from weather import CombinedWeather
 from translator import Translator
-from icons import Icons, cropImage
+from icons import Icons, cropImage, cropImageMockup
 import tkinter as Tk
 
 import PySimpleGUI as gui
@@ -51,14 +51,13 @@ while True:
   windowElement[elementKeys["currentTemperature"]].update(currentTemperature)
 
   for index in range(1, 8):
-    windowElement[elementKeys[f"futureHourlyWeatherTime{index}"]].update(futureWeatherHourly[index - 1]["hour"])
-    windowElement[elementKeys[f"futureHourlyWeatherTemp{index}"]].update(futureWeatherHourly[index - 1]["temperature"])
+    windowElement[elementKeys[f"futureHourlyWeatherTime{index}"]].update(f"{futureWeatherHourly[index - 1]['hour']} \n {futureWeatherHourly[index - 1]['temperature']}")
 
   for dailyIndex in range(0, 5):
-    coppedImage = cropImage("/home/macjej/Workspace/mirror/assets/10d@2x.png")
+    croppedImage = cropImageMockup("/home/macjej/Workspace/mirror/assets/10d@2x.png")
+    # croppedImage = cropImage(icons.icons[dailyIndex])
     windowElement[elementKeys[f"futureDailyIcon{dailyIndex + 1}"]].update(data=Tk.PhotoImage(
-      # data=icons.icons[dailyIndex], height = 100, width=100).zoom(1, 1)
-      data=coppedImage
+      data=croppedImage
     ))
     futureDayOfWeek = translatorObject.getTranslation(daysOfWeekNo[futureWeatherDaily[dailyIndex].weekDay])[0:3]
     windowElement[elementKeys[f"futureDailyValues{dailyIndex + 1}"]].update(

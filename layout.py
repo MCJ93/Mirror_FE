@@ -14,14 +14,6 @@ elementKeys = {
   "futureHourlyWeatherTime6": "_futureHourlyWeatherTime6_",
   "futureHourlyWeatherTime7": "_futureHourlyWeatherTime7_",
   "futureHourlyWeatherTime8": "_futureHourlyWeatherTime8_",
-  "futureHourlyWeatherTemp1": "_futureHourlyWeatherTemp1_",
-  "futureHourlyWeatherTemp2": "_futureHourlyWeatherTemp2_",
-  "futureHourlyWeatherTemp3": "_futureHourlyWeatherTemp3_",
-  "futureHourlyWeatherTemp4": "_futureHourlyWeatherTemp4_",
-  "futureHourlyWeatherTemp5": "_futureHourlyWeatherTemp5_",
-  "futureHourlyWeatherTemp6": "_futureHourlyWeatherTemp6_",
-  "futureHourlyWeatherTemp7": "_futureHourlyWeatherTemp7_",
-  "futureHourlyWeatherTemp8": "_futureHourlyWeatherTemp8_",
   "futureDailyIcon1": "_futureDailyIcon1",
   "futureDailyIcon2": "_futureDailyIcon2",
   "futureDailyIcon3": "_futureDailyIcon3",
@@ -64,8 +56,8 @@ class FutureHourlyWeatherText(BaseElement):
     super().__init__(
       key,
       font=fontSmall,
-      size=(4, 1),
-      justification='center'
+      size=(4, 2),
+      justification='left'
     )
 
 class FutureDailyValue(BaseElement):
@@ -136,16 +128,6 @@ rightColumn = [
     FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTime6"]),
     FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTime7"]),
     FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTime8"]),
-  ],
-  [
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp1"]),
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp2"]),
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp3"]),
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp4"]),
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp5"]),
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp6"]),
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp7"]),
-    FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTemp8"])
   ],
   [
     Icon(elementKeys["futureDailyIcon1"]),

@@ -1,6 +1,7 @@
 import io
 import base64
-from urllib.request import urlopen
+import requests
+from io import BytesIO
 from PIL import Image  
 
 class Icons:
@@ -13,12 +14,23 @@ class Icons:
       self.icons.append(self.getIcon(self.dailyWeather[index].icon))
 
   def getIcon(self, iconName):
-    return 
     # baseUrl = f"http://openweathermap.org/img/wn/{iconName}@2x.png"
-    # image_byt = urlopen(baseUrl).read()
-    # return base64.encodestring(image_byt)
+    # response = requests.get(baseUrl)
+    # return response
+    return
 
-def cropImage(imagePath):
+def cropImage(imageResponse):
+  img = Image.open(BytesIO(imageResponse.content))
+  x, y = img.size
+
+  imgAfterCrop = img.crop(( 15, 15, x - 5, y - 15 ))
+  imgAfterResize = imgAfterCrop.resize([50, 40])
+  img_byte_arr = io.BytesIO()
+  imgAfterResize.save(img_byte_arr, format=img.format)
+  img_byte_arr = img_byte_arr.getvalue()
+  return img_byte_arr
+
+def cropImageMockup(imagePath):
   img = Image.open(open(imagePath, "rb"))
   x, y = img.size
 
@@ -28,3 +40,4 @@ def cropImage(imagePath):
   imgAfterResize.save(img_byte_arr, format=img.format)
   img_byte_arr = img_byte_arr.getvalue()
   return img_byte_arr
+
