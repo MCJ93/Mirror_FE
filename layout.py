@@ -1,6 +1,5 @@
 import PySimpleGUI as gui
 
-# find a way to loop future hourly weather, right now it's horrible
 elementKeys = {
   "currentTime": "_currentTime_",
   "currentDate": "_currentDate",
@@ -28,9 +27,9 @@ elementKeys = {
   "futureDailyValues6": "_futureDailyValues6_",
 }
 
-fontBig = ("Bebas Neue", 60)
-fontMedium = ("Bebas Neue", 25)
-fontSmall = ("Bebas Neue", 8)
+fontBig = ("Bebas Neue", 80)
+fontMedium = ("Bebas Neue", 40)
+fontSmall = ("Bebas Neue", 12)
 
 baseText = "                   "
 
@@ -56,8 +55,8 @@ class FutureHourlyWeatherText(BaseElement):
     super().__init__(
       key,
       font=fontSmall,
-      size=(4, 2),
-      justification='center'
+      size=(6, 2),
+      justification='right'
     )
 
 class FutureDailyValue(BaseElement):
@@ -65,15 +64,25 @@ class FutureDailyValue(BaseElement):
     super().__init__(
       key,
       font=fontSmall,
-      size=(7, 3),
-      justification='left'
+      size=(8, 3),
+      justification='right'
     )
 
 class BigText(BaseElement):
+  def __init__(self, key, size=(None, None), justification=None):
+    super().__init__(
+      key,
+      font=fontBig,
+      size=size,
+      justification=justification
+    )
+
+class CurrentTemp(BigText):
   def __init__(self, key):
     super().__init__(
       key,
-      font=fontBig
+      size=(7, 1),
+      justification="right"
     )
 
 class MediumText(BaseElement):
@@ -90,16 +99,30 @@ class Icon(gui.Image):
       background_color="#000"
     )
 
+class IconsSeparator(gui.Text):
+  def __init__(self):
+    super().__init__(
+      size=(2, 1),
+      background_color="#000"
+    )
+
 leftColumn = [
   [
     gui.Text(
       "",
-      size=(0, 28),
+      size=(0, 24),
       background_color="#000"
     ),
   ],
   [
     BigText(elementKeys["currentTime"])
+  ],
+  [
+    gui.Text(
+      "",
+      size=(0, 6),
+      background_color="#000"
+    ),
   ],
   [
     MediumText(elementKeys["currentDayOfWeek"]),
@@ -112,12 +135,12 @@ rightColumn = [
   [
     gui.Text(
       "",
-      size=(0, 28),
+      size=(0, 24),
       background_color="#000"
     ),
   ],
   [
-    BigText(elementKeys["currentTemperature"])
+    CurrentTemp(elementKeys["currentTemperature"])
   ],
   [
     FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTime1"]),
@@ -130,14 +153,29 @@ rightColumn = [
     FutureHourlyWeatherText(elementKeys["futureHourlyWeatherTime8"]),
   ],
   [
+    gui.Text(
+      "",
+      size=(10, 1),
+      background_color="#000"
+    ),
     Icon(elementKeys["futureDailyIcon1"]),
+    IconsSeparator(),
     Icon(elementKeys["futureDailyIcon2"]),
+    IconsSeparator(),
     Icon(elementKeys["futureDailyIcon3"]),
+    IconsSeparator(),
     Icon(elementKeys["futureDailyIcon4"]),
+    IconsSeparator(),
     Icon(elementKeys["futureDailyIcon5"]),
+    IconsSeparator(),
     Icon(elementKeys["futureDailyIcon6"]),
   ],
   [
+    gui.Text(
+      "",
+      size=(5, 1),
+      background_color="#000"
+    ),
     FutureDailyValue(elementKeys["futureDailyValues1"]),
     FutureDailyValue(elementKeys["futureDailyValues2"]),
     FutureDailyValue(elementKeys["futureDailyValues3"]),
@@ -151,12 +189,14 @@ layout = [
   [
     gui.Column(
       leftColumn,
-      size=(800, 800),
+      size=(700, 700),
+      justification='left',
       background_color="#000"
     ),
     gui.Column(
       rightColumn,
-      size=(400, 800),
+      size=(800, 900),
+      justification='right',
       background_color="#000"
     )
   ]

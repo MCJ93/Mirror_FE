@@ -53,7 +53,7 @@ class CombinedWeather:
 
   def formatFutureHourly(self, weather):
     futureDate = datetime.utcfromtimestamp(3600 * ((weather.date + 1800) // 3600))
-    return { "hour": f"{futureDate.strftime('%H')}'", "temperature": weather.temp_degrees }
+    return { "hour": f"{futureDate.strftime('%H:')}00", "temperature": weather.temp_degrees }
 
   @property
   def futureHourly(self):
